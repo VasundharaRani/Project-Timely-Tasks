@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <title>Timely Tasks: {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <nav class="bg border navbar navbar-expand-md navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand"><span class="timely">Timely</span> <span class="tasks">Tasks</span></a>
+                <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    {% if session["user_id"] %}
+                        <ul class="navbar-nav me-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/add">Add</a></li>
+                            {% for task in tasks %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('update_task', task_id=task.id) }}">Update Task {{ task.serial_number }}</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ url_for('delete_task', task_id=task.id) }}">Delete Task {{ task.serial_number }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item"><a class="nav-link btn-outline-danger" href="/logout">Log Out</a></li>
+                        </ul>
+                    {% else %}
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item"><a class="nav-link btn-outline-primary" href="/register">Register</a></li>
+                            <li class="nav-item"><a class="nav-link btn-outline-success" href="/login">Log In</a></li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-info mb-0 text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+
+        <main class="container py-5 text-center">
+            {% block main %}{% endblock %}
+        </main>
+    </body>
+</html>

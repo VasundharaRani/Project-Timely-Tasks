@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Professional Tasks
+{% endblock %}
+
+{% block main %}
+
+    <h2 style="color : #EFE7BC" class="mb-5">Professional Tasks</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Task</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Due _date</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td scope="row">{{ task.serial_number }}</td>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.due_date }}</td>
+                    <td>{{ task.priority }}</td>
+                    <td>{{ task.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+{% endblock %}
+

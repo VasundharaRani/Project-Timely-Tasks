@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block main %}
+
+    <form action="/" method="post">
+        <div class="row text-center justify-content">
+            <div class="col me-5">
+                <div class="card custom-card mb-3 ms-2">
+                    <img src="{{ url_for('static', filename='Professional.webp') }}" class="card-image-top">
+                    <div class="card-body me-4">
+                        <h5 class="card-title">Professional</h5>
+                        <p>Manage your work-related tasks efficiently</p>
+                        <a href="{{ url_for('view_professional_tasks') }}"class="btn btn-info">View tasks</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-3 ms-4">
+                <div class="card custom-card mb-3">
+                    <img src="{{ url_for('static', filename='personal.jpeg') }}" class="card-image-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Personal</h5>
+                        <p>Stay on top of your personal to-dos</p>
+                        <a href="{{ url_for('view_personal_tasks') }}" class="btn btn-info">View tasks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

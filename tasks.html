@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Tasks
+{% endblock %}
+
+{% block main %}
+
+<form action="/add" method="post">
+    <input class="form-control mb-3 mx-auto" style="width: 300px;" autocomplete="off" autofocus name="title"
+        placeholder="Task title" required>
+    <textarea class="form-control mx-auto" style="width: 300px;" autocomplete="off" name="description"
+        placeholder="Task description"></textarea>
+    <br>
+
+    <select class="form-select mb-3 mx-auto" style="width: 200px;" name="category">
+        <option value="category" selected disabled>Category</option>
+        <option value="professional">Professional</option>
+        <option value="personal">Personal</option>
+    </select>
+
+    <select class="form-select mb-3 mx-auto" style="width: 200px;" name="priority">
+        <option value="priority" selected disabled>Priority</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+    </select>
+
+    <input class="form-control mb-3 mx-auto" style="width: 200px;" autocomplete="off" name="due_date"
+        placeholder="Due Date">
+
+    <button class="btn btn-primary">Add Task</button>
+</form>
+
+{% endblock %}
