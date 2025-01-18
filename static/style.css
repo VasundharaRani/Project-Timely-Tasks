@@ -1,0 +1,25 @@
+.timely {
+    color:#E42256;
+}
+.tasks {
+    color:#FBC740;
+}
+.navbar-expand-md {
+    background-color:#60A3D9;
+}
+body {
+    background-image: url("bg.jpg");
+    background-size : cover;
+}
+.card-image-top {
+    height: 390px;
+    width : 450px;
+    padding-left : 20px;
+}
+.custom-card {
+    width: 100%;
+    padding-left : 20px;
+}
+h4, h5 {
+    color : #B5E5CF;
+}
