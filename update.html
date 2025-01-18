@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Update Task
+{% endblock %}
+
+{% block main %}
+<ul>
+    <li>
+        <h4 class="mb-3">{{ task.title }}</h4>
+        <h5 class="mb-3">{{ task.priority }} Priority - {{ task.status }}</h5>
+        <h5>Due: {{ task.due_date or "No Due Date" }}</h5>
+        <br>
+
+        <!-- Update Status -->
+        <form action="{{ url_for('update_task', task_id=task.id) }}" method="POST" style="display:inline;">
+            <select name="status" class="form-select mb-3 mx-auto w-auto">
+                <option selected disabled>Status</option>
+                <option value="Pending" {% if task.status == 'Pending' %}selected{% endif %} >Pending</option>
+                <option value="In Progress" {% if task.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                <option value="Completed" {% if task.status == 'Completed' %}selected{% endif %}>Completed</option>
+            </select>
+        <!-- Update Priority -->
+            <select name="priority" class="form-select mb-3 mx-auto w-auto">
+                <option selected disabled>Priority</option>
+                <option value="High" {% if task.priority == 'High' %}selected{% endif %}>High</option>
+                <option value="Medium" {% if task.priority == 'Medium' %}selected{% endif %}>Medium</option>
+                <option value="Low" {% if task.priority == 'Low' %}selected{% endif %}>Low</option>
+            </select>
+            <button type="submit" class="btn btn-info">Update</button>
+        </form>
+    </li>
+</ul>
+
+{% endblock %}
