@@ -70,10 +70,6 @@ def login():
             "SELECT * FROM users WHERE username = ?", request.form.get("username")
         )
 
-        # Debug prints
-        print("Rows:", rows)
-        print("Password hash:", rows[0]["password"] if rows else "No user found")
-
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(
             rows[0]["password"], request.form.get("password")
@@ -134,8 +130,6 @@ def add():
         # Add tasks to the database
         db.execute("INSERT INTO tasks (user_id, title, description, due_date, priority, category) VALUES (?,?,?,?,?,?)",
                                 user_id, title, description, due_date, priority, category)
-        # rows = db.execute("SELECT * FROM tasks WHERE title = ?",title)
-        # session["task_id"] = rows[0]["id"]
 
         flash("Task is added!")
         if category == "professional":
